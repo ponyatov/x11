@@ -1,0 +1,11 @@
+{
+    "name":          "x11",
+    "description":   "A minimal D application.",
+    "authors":      ["Dmitry Ponyatov <dponyatov@gmail.com>" ],
+    "copyright":     "Copyright © 2023, Dmitry Ponyatov <dponyatov@gmail.com>",
+    "license":       "MIT",
+    "homepage":      "https://github.com/ponyatov/dgame",
+    "targetPath":    "bin",
+    "targetType":    "executable",
+    "dependencies": {}
+}
