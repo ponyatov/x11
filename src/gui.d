@@ -15,16 +15,16 @@ class Win {
     uint height = 480; ///< current window height
     uint border = 5; ///< border size, pixels
 
-    this(Display* display, int screen, Window root) {
-        win = XCreateSimpleWindow(display, root, 0, 0, width, height, border,
-                BlackPixel(display, screen), WhitePixel(display, screen));
-        XMapWindow(display, win);
+    this(GUI gui) {
+        win = XCreateSimpleWindow(gui.display, gui.root, 0,
+                0, width, height, border, gui.black, gui.white);
+        XMapWindow(gui.display, win);
 
     }
 
-    void quit(Display* display) {
-        XUnmapWindow(display, win);
-        XDestroyWindow(display, win);
+    void quit(GUI gui) {
+        XUnmapWindow(gui.display, win);
+        XDestroyWindow(gui.display, win);
     }
 
 }
@@ -36,6 +36,8 @@ class GUI {
     static Window root;
     /// default screen
     static int screen = 0;
+    /// colors
+    ulong black, white;
     /// main window
     Win main;
     /// events
@@ -47,17 +49,18 @@ class GUI {
         assert(display !is null);
         screen = DefaultScreen(display);
         root = RootWindow(display, screen);
-        main = new Win(display, screen, root);
+        black = BlackPixel(display, screen);
+        white = WhitePixel(display, screen);
+        main = new Win(this);
     }
 
     void loop() {
         while (XNextEvent(display, &event)) {
-
         }
     }
 
     void quit() {
-        main.quit(display);
+        main.quit(this);
         XCloseDisplay(display);
     }
 }
