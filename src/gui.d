@@ -21,6 +21,12 @@ class Win {
         XMapWindow(display, win);
 
     }
+
+    void quit(Display* display) {
+        XUnmapWindow(display, win);
+        XDestroyWindow(display, win);
+    }
+
 }
 
 class GUI {
@@ -49,6 +55,11 @@ class GUI {
 
         }
     }
+
+    void quit() {
+        main.quit(display);
+        XCloseDisplay(display);
+    }
 }
 
 GUI gui;
@@ -63,4 +74,5 @@ void loop() {
 }
 
 void quit() {
+    gui.quit();
 }
