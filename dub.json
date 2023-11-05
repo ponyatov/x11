@@ -1,10 +1,10 @@
 {
-    "name":          "x11",
+    "name":          "xgui",
     "description":   "high-level X11 interface for D lang",
     "authors":      ["Dmitry Ponyatov <dponyatov@gmail.com>" ],
     "copyright":     "Copyright © 2023, Dmitry Ponyatov <dponyatov@gmail.com>",
     "license":       "MIT",
-    "homepage":      "https://github.com/ponyatov/x11",
+    "homepage":      "https://github.com/ponyatov/xgui",
     "targetPath":    "bin",
     "targetType":    "executable",
     "dependencies": {
