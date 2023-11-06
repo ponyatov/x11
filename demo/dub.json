@@ -1,16 +1,14 @@
 {
-    "name":          "xgui",
-    "description":   "high-level X11 interface for D lang",
+    "name":          "demo",
+    "description":   "xgui demo app",
     "authors":      ["Dmitry Ponyatov <dponyatov@gmail.com>"],
     "copyright":     "Copyright © 2023, Dmitry Ponyatov <dponyatov@gmail.com>",
     "license":       "MIT",
     "homepage":      "https://github.com/ponyatov/xgui",
-    "targetPath":    "bin",
-    "targetType":    "library",
-    "subPackages": [
-        "demo"
-    ],
+    "targetPath":    "../bin",
+    "targetName":    "demo",
+    "targetType":    "executable",
     "dependencies": {
-        "x11d": "~>1.0.23"
+        "xgui": {"path": "../"}
     }
 }

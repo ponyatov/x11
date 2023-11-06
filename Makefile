@@ -9,7 +9,7 @@ D += $(wildcard src/*.d*)
 # all
 .PHONY: all
 all: $(D)
-	$(RUN)
+	$(RUN) :demo
 
 # format
 format: tmp/format_d

@@ -22,7 +22,6 @@ class Win {
         win = XCreateSimpleWindow(gui.display, gui.root, 0,
                 0, width, height, border, gui.black, gui.white);
         XMapWindow(gui.display, win);
-
     }
 
     void quit() {
@@ -31,6 +30,7 @@ class Win {
     }
 
     void cross() {
+        // XDrawLine(gui.display,win,gc,0,0,width,height);
     }
 }
 
