@@ -16,10 +16,19 @@ format: tmp/format_d
 tmp/format_d: $(D)
 	$(RUN) dfmt -- -i $? && touch $@
 
+# doc
+.PHONY: doc
+doc: doc/CRL-90-8.pdf doc/xlib.pdf
+
+doc/CRL-90-8.pdf:
+	$(CURL) $@ http://www.hpl.hp.com/techreports/Compaq-DEC/CRL-90-8.pdf
+doc/xlib.pdf:
+	$(CURL) $@ https://www.x.org/docs/X11/xlib.pdf
+
 # install
 APT_SRC = /etc/apt/sources.list.d
 ETC_APT = $(APT_SRC)/d-apt.list $(APT_SRC)/llvm.list
-.PHONY: install update gz
+.PHONY: install update doc gz
 install: doc gz $(ETC_APT)
 	sudo apt update && sudo apt --allow-unauthenticated install -yu d-apt-keyring
 	dub fetch dfmt

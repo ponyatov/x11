@@ -1,32 +1,37 @@
 // http://mech.math.msu.su/~nap/2/GWindow/xintro.html
 
-module gui;
+module xgui;
 
 // https://github.com/ZILtoid1991/x11d
 import x11.Xlib;
 import x11.X;
 
 import std.stdio;
+import std.string;
 
 class Win {
     /// main window
+    GUI gui;
     Window win;
     uint width = 640; ///< current window width
     uint height = 480; ///< current window height
     uint border = 5; ///< border size, pixels
 
     this(GUI gui) {
+        this.gui = gui;
         win = XCreateSimpleWindow(gui.display, gui.root, 0,
                 0, width, height, border, gui.black, gui.white);
         XMapWindow(gui.display, win);
 
     }
 
-    void quit(GUI gui) {
+    void quit() {
         XUnmapWindow(gui.display, win);
         XDestroyWindow(gui.display, win);
     }
 
+    void cross() {
+    }
 }
 
 class GUI {
@@ -47,6 +52,11 @@ class GUI {
     this() {
         display = XOpenDisplay(null);
         assert(display !is null);
+        writefln("X%s.%s %s rel.%s DISPLAY=%s.%s /%s",
+                display.proto_major_version,
+                display.proto_minor_version, display.vendor.fromStringz,
+                display.release, display.display_name.fromStringz,
+                display.default_screen, display.nscreens);
         screen = DefaultScreen(display);
         root = RootWindow(display, screen);
         black = BlackPixel(display, screen);
@@ -60,22 +70,13 @@ class GUI {
     }
 
     void quit() {
-        main.quit(this);
+        main.quit();
         XCloseDisplay(display);
     }
 }
 
 GUI gui;
 
-void init() {
-    gui = new GUI;
-    writeln("init\t", gui);
-}
-
-void loop() {
-    gui.loop;
-}
-
-void quit() {
-    gui.quit();
+static this() {
+    gui = new GUI();
 }
